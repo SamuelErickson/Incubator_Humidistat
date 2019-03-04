@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Mosquito Incubator Humidity Control</title>
+    <link rel="stylesheet" href='../static/style.css'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+		body {
+			text-align: center;
+		}
+		#g1,
+		#g2 {
+			width: 200px;
+			height: 160px;
+			display: inline-block;
+			margin: 1em;
+		}
+    </style>
+</head>
+
+<body>
+	<h1>Mosquito Incubator Humidity Control </h1>
+    <div id="g1"></div>
+    <div id="g2"></div>
+    <hr>
+	<h3> Last Sensors Reading: {{ time }} ==> <a href="/"class="button">REFRESH</a></h3>	
+	<hr>
+		<!--
+	<h3> HISTORICAL DATA </h3>
+		<p> Enter number of samples to retrieve:
+		<form method="POST">
+			<input name="numSamples" value= {{numSamples}}>
+			<input type="submit">
+		</form></p>
+		
+		<hr>
+		-->	
+		<img src="/plot/temp" alt="Image Placeholder" width="49%">
+		<img src="/plot/hum" alt="Image Placeholder" width="49%">
+	
+	<!--
+below added by Sam 2-13-2019
+
+-->	
+    
+    <hr>
+    <h1>System Settings</h1>
+
+		<h3> Humidity Power:  {{ HumSts  }}</h3>
+		<h3> Humidity Control Setting:  {{ controlSts  }}</h3>
+		<h3> Humidity Setpoint: 80% </h3>
+		<h3> Indicator LED:  {{ led  }}</h3>
+		<h3> Sample Period: 2.5 seconds</h3>
+		<h3> Display Period: 1 hour</h3>
+
+
+	<h3> 
+			<a href="/led/on" class="button">SET TO AUTOMATIC</a>  
+			<a href="/led/off" class="button">SET TO MANUAL</a>
+			<a href="/manSwitch/on" class="button">MANUAL ON</a>  
+			<a href="/manSwitch/off" class="button">MANUAL OFF</a>
+		</h3>
+		<hr>
+		<h3> <a href="/info" class="button">More Information</a></h3>	
+
+
+
+    
+    <script src="../static/raphael-2.1.4.min.js"></script>
+    <script src="../static/justgage.js"></script>
+    <script>
+		var g1, g2;
+		document.addEventListener("DOMContentLoaded", function(event) {
+			g1 = new JustGage({
+				id: "g1",
+				value: {{temp}},
+				valueFontColor: "yellow",
+				titleFontColor: "yellow",
+				min: -10,
+				max: 50,
+				title: "Temperature",
+				label: "Celcius"
+			});
+			g2 = new JustGage({
+				id: "g2",
+				value: {{hum}},
+				valueFontColor: "yellow",
+				titleFontColor: "yellow",
+				min: 0,
+				max: 100,
+				title: "Humidity",
+				label: "%"
+			});
+		});
+    </script>
+</body>
+
+</html>
