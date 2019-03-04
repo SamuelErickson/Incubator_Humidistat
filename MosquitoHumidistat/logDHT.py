@@ -7,6 +7,13 @@
 #  
 #  Capture data from a DHT22 sensor and save it on a database
 
+
+'''
+    Code to run Incubator
+    Github: 
+'''
+
+
 import time
 import random
 import pandas as pd
