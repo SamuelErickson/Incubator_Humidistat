@@ -139,9 +139,10 @@ def CheckControl(hum,humSetPoint):
     global manSwitch
     if checkAutoCtrl():
         #WHEN AUTO CONTROL ON
-        
-        #SAM! Need to add what happens with None vals
-        if(relaySts == 0):
+        if not isinstance(hum, int) and not isinstance(hum, float):
+            # What happens when a value that is not integer and not float is passed
+            pass
+        elif(relaySts == 0):
             if hum > 80:
                 GPIO.output(relay, GPIO.HIGH)
                 relaySts = 1
